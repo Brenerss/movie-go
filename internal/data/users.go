@@ -36,6 +36,10 @@ type UserModel struct {
 	DB *sql.DB
 }
 
+func (u *User) IsAnonymous() bool {
+	return u == AnonymousUser
+}
+
 func (p *password) Set(plaintextPassword string) error {
 	hash, err := bcrypt.GenerateFromPassword([]byte(plaintextPassword), 12)
 	if err != nil {
